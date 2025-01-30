@@ -39,7 +39,8 @@
     </div>
 
     <audio id="bg-music" autoplay loop>
-        <source src="https://drive.google.com/file/d/1W0-MAl2w46EWJPbgvXG4fgxtg3_xbxfN/view?usp=sharing" type="audio/mpeg">
+        <source src="https://drive.google.com/uc?export=download&id=1W0-MAl2w46EWJPbgvXG4fgxtg3_xbxfN" type="audio/mpeg">
+        Your browser does not support the audio element.
     </audio>
 
     <script>
@@ -53,8 +54,8 @@
             noClicks++;
             if (noClicks < 3) {
                 let button = document.getElementById("no");
-                button.style.top = Math.random() * window.innerHeight + "px";
-                button.style.left = Math.random() * window.innerWidth + "px";
+                button.style.top = Math.random() * (window.innerHeight - 50) + "px"; // Adjust position within window
+                button.style.left = Math.random() * (window.innerWidth - 100) + "px"; // Adjust position within window
             } else {
                 document.getElementById("no").innerText = "Yes";
                 document.getElementById("no").setAttribute("onclick", "yesClicked()");
