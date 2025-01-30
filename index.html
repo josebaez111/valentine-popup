@@ -6,56 +6,64 @@
     <title>Be My Valentine?</title>
     <style>
         body {
-            text-align: center;
             font-family: Arial, sans-serif;
-            background-color: #ffe6e6;
+            text-align: center;
+            background-color: #ffcccc;
         }
-        .container {
-            margin-top: 50px;
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
             padding: 20px;
             border-radius: 10px;
-            background: white;
-            display: inline-block;
+            box-shadow: 0px 0px 10px gray;
         }
-        button {
-            font-size: 20px;
-            padding: 10px;
-            margin: 10px;
-            cursor: pointer;
+        .buttons {
+            margin-top: 20px;
         }
-        #noBtn {
+        #no {
             position: absolute;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Will you be my Valentine? ❤️</h1>
-        <button onclick="yesClick()">Yes</button>
-        <button id="noBtn" onclick="noClick()">No</button>
+
+    <div class="popup">
+        <h2>Will you be my Valentine? 💖</h2>
+        <div class="buttons">
+            <button onclick="yesClicked()">Yes</button>
+            <button id="no" onclick="noClicked()">No</button>
+        </div>
     </div>
+
+    <audio id="bg-music" autoplay loop>
+        <source src="https://drive.google.com/file/d/1W0-MAl2w46EWJPbgvXG4fgxtg3_xbxfN/view?usp=sharing" type="audio/mpeg">
+    </audio>
 
     <script>
         let noClicks = 0;
-        function yesClick() {
-            alert("Yay! I love you! 💖");
+
+        function yesClicked() {
+            alert("Yay! 🥰 Can't wait for our special day!");
         }
-        function noClick() {
+
+        function noClicked() {
             noClicks++;
-            if (noClicks >= 3) {
-                document.getElementById("noBtn").innerText = "Yes";
-                document.getElementById("noBtn").onclick = yesClick;
+            if (noClicks < 3) {
+                let button = document.getElementById("no");
+                button.style.top = Math.random() * window.innerHeight + "px";
+                button.style.left = Math.random() * window.innerWidth + "px";
             } else {
-                let x = Math.random() * window.innerWidth * 0.8;
-                let y = Math.random() * window.innerHeight * 0.8;
-                document.getElementById("noBtn").style.left = `${x}px`;
-                document.getElementById("noBtn").style.top = `${y}px`;
+                document.getElementById("no").innerText = "Yes";
+                document.getElementById("no").setAttribute("onclick", "yesClicked()");
             }
         }
     </script>
+
 </body>
 </html>
-
 
 
 
